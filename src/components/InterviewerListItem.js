@@ -5,7 +5,10 @@ import classNames from 'classnames'
 
 export function InterviewerListItem(props) {
 
-
+  const interviewerListItemClass = classNames("interviewers__item", {
+    "interviewers__item--selected": props.selected
+  });
+  
   return (
     <li className="interviewers__item" onCLick={props}>
       <img
