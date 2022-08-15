@@ -1,7 +1,7 @@
 import { process_params } from 'express/lib/router';
 import React, { useState } from 'react';
 
-export default function Empty() {
+export default function Empty(props) {
   return (
     <main className="appointment__add">
       <img
