@@ -50,7 +50,7 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 
 export default function Application(props) {
   const [state, setState] = useState({
-    day: "",
+    day: "Monday",
     days: [],
     appointments: {},
     interviewers: {}
