@@ -26,7 +26,26 @@ export default function useApplicationData() {
       appointments
     });
     return axios.put(`/api/appointments/${id}`, appointment)
+    .then((res) => {
+      setState({
+        ...state,
+        appointments,
+        days: updateSpots(state, appointments)
+    })
+  })
+}
+
+function findDay(day) {
+  const days = {
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4
   }
+  return days[day]
+}
+
 
   function cancelInterview(id) {
     const appointment = {
@@ -41,7 +60,20 @@ export default function useApplicationData() {
       ...state,
       appointments
     })
+    const interviewDay = findDay(state.day)
+    const day = {
+      ...state.days[interviewDay],
+      spots: state.days[interviewDay].spots + 1
+    }
+
+    let days = state.days
+    days[interviewDay] = day;
+
     return axios.delete(`/api/appointments/${id}`, appointment)
+    .then(res => {
+      setState({ ...state, appointments, days: updateSpots(state, appointments) })
+        return res
+    })
   }
 
 
@@ -49,9 +81,9 @@ export default function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      axios.get('http://localhost:8001/api/days'),
-      axios.get('http://localhost:8001/api/appointments'),
-      axios.get('http://localhost:8001/api/interviewers')
+      axios.get('/api/days'),
+      axios.get('/api/appointments'),
+      axios.get('/api/interviewers')
     ]).then((all) => {
       setState(prev => ({
         ...prev,
@@ -61,6 +93,23 @@ export default function useApplicationData() {
       }));
     });
   }, []);
+
+  function updateSpots(state, appointments) {
+    return state.days.map((elem) => {
+      if (elem.name === state.day) {
+        return {
+          ...elem,
+          spots: elem.appointments
+            .map((appointment) => appointments[appointment])
+            .filter(({ interview }) => !interview).length
+        };
+      }
+
+      return elem;
+    });
+  }
+
+
   return {
     state,
     setDay,
