@@ -1,5 +1,6 @@
 export function getAppointmentsForDay(state, day) {
   let newArray = [];
+  console.log("day", day)
   for (let object of state.days) {
     if (object.name === day) {
       for (let appointment of object.appointments) {
