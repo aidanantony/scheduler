@@ -85,7 +85,6 @@ function findDay(day) {
       axios.get('/api/appointments'),
       axios.get('/api/interviewers')
     ]).then((all) => {
-      console.log(all[1].data)
       setState(prev => ({
         ...prev,
         days: all[0].data,

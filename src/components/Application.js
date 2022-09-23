@@ -17,8 +17,6 @@ export default function Application(props) {
 
   let dailyAppointments = [];
   dailyAppointments = getAppointmentsForDay(state, state.day);
-  console.log("label", dailyAppointments)
-  console.log('state', state)
   let dailyInterviewers = [];
   dailyInterviewers = getInterviewersForDay(state, state.day);
   return (
