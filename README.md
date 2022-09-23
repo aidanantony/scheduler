@@ -8,13 +8,13 @@ The available interviews are Monday to Friday. You can see how many spots are re
 
 ## Project in action!
 ## Home Page
-["Home Page"](https://github.com/aidanantony/scheduler/blob/master/Normal-view.png)
+!["Home Page"](https://github.com/aidanantony/scheduler/blob/master/Normal-view.png)
 
 ## New Appointment view
-["View of creating a new appointment"](https://github.com/aidanantony/scheduler/blob/master/New-appointment-view.png)
+!["View of creating a new appointment"](https://github.com/aidanantony/scheduler/blob/master/New-appointment-view.png)
 
 ## Deleting appointment message
-["Deleting appointment view"](https://github.com/aidanantony/scheduler/blob/master/Deleting-view-message.png)
+!["Deleting appointment view"](https://github.com/aidanantony/scheduler/blob/master/Deleting-view-message.png)
 
 ## Setup
 
