@@ -26,7 +26,7 @@ export function getInterviewersForDay(state, day) {
   let newArray = [];
   for (let object of state.days) {
     if (object.name === day) {
-      for (let interviewer of object.interviewers) {
+      for (let interviewer in object.interviewers) {
         if (state.interviewers[interviewer]) {
           newArray.push(state.interviewers[interviewer]);
         }
