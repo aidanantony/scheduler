@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import axios from "axios";
 
 export default function useApplicationData() {
@@ -26,25 +26,25 @@ export default function useApplicationData() {
       appointments
     });
     return axios.put(`/api/appointments/${id}`, appointment)
-    .then((res) => {
-      setState({
-        ...state,
-        appointments,
-        days: updateSpots(state, appointments)
-    })
-  })
-}
-
-function findDay(day) {
-  const days = {
-    Monday: 0,
-    Tuesday: 1,
-    Wednesday: 2,
-    Thursday: 3,
-    Friday: 4
+      .then((res) => {
+        setState({
+          ...state,
+          appointments,
+          days: updateSpots(state, appointments)
+        });
+      });
   }
-  return days[day]
-}
+
+  function findDay(day) {
+    const days = {
+      Monday: 0,
+      Tuesday: 1,
+      Wednesday: 2,
+      Thursday: 3,
+      Friday: 4
+    };
+    return days[day];
+  }
 
 
   function cancelInterview(id) {
@@ -59,21 +59,21 @@ function findDay(day) {
     setState({
       ...state,
       appointments
-    })
-    const interviewDay = findDay(state.day)
+    });
+    const interviewDay = findDay(state.day);
     const day = {
       ...state.days[interviewDay],
       spots: state.days[interviewDay].spots + 1
-    }
+    };
 
-    let days = state.days
+    let days = state.days;
     days[interviewDay] = day;
 
     return axios.delete(`/api/appointments/${id}`, appointment)
-    .then(res => {
-      setState({ ...state, appointments, days: updateSpots(state, appointments) })
-        return res
-    })
+      .then(res => {
+        setState({ ...state, appointments, days: updateSpots(state, appointments) });
+        return res;
+      });
   }
 
 
@@ -115,5 +115,5 @@ function findDay(day) {
     setDay,
     bookInterview,
     cancelInterview
-  }
+  };
 };

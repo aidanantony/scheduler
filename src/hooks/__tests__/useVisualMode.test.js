@@ -4,7 +4,7 @@ import useVisualMode from "hooks/useVisualMode";
 
 const FIRST = "FIRST";
 const SECOND = "SECOND";
-const THIRD ="THIRD";
+const THIRD = "THIRD";
 
 test.only("useVisualMode should initialize with default value", () => {
   const { result } = renderHook(() => useVisualMode(FIRST));

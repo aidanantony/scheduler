@@ -150,7 +150,7 @@ it("shows the delete error when failing to delete an existing appointment", asyn
 
   await waitForElement(() => getByText(container, "Archie Cohen"));
 
-  const appointment = getAllByTestId(container,"appointment").find(
+  const appointment = getAllByTestId(container, "appointment").find(
     (appointment) => queryByText(appointment, "Archie Cohen"));
 
   fireEvent.click(queryByAltText(appointment, "Delete"));

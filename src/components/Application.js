@@ -46,16 +46,16 @@ export default function Application(props) {
         {dailyAppointments.map(appointment => {
           const interview = getInterview(state, appointment.interview);
           return (
-          <Appointment
-            key={appointment.id}
-            id={appointment.id}
-            time={appointment.time}
-            interview={interview}
-            interviewers={dailyInterviewers}
-            bookInterview={bookInterview}
-            cancelInterview={cancelInterview}
-          />
-          )
+            <Appointment
+              key={appointment.id}
+              id={appointment.id}
+              time={appointment.time}
+              interview={interview}
+              interviewers={dailyInterviewers}
+              bookInterview={bookInterview}
+              cancelInterview={cancelInterview}
+            />
+          );
         })
         }
         {<Appointment key="last" time="5pm" />}
