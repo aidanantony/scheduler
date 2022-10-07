@@ -19,6 +19,7 @@ The available interviews are Monday to Friday. You can see how many spots are re
 ## Setup
 
 Install dependencies with `npm install`.
+Use this [link](https://github.com/lighthouse-labs/scheduler-api) to fork, clone and find the README.md instructions to run the server api. 
 
 ## Running Webpack Development Server
 
