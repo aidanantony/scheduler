@@ -11,7 +11,8 @@ export default function useApplicationData() {
   });
 
   const setDay = day => setState({ ...state, day });
-
+  
+  //Function to book an interview, while the axios.put sends it to the database
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -46,7 +47,22 @@ export default function useApplicationData() {
     return days[day];
   }
 
+  // This function updates the spots remaining for that given day
+  function updateSpots(state, appointments) {
+    return state.days.map((elem) => {
+      if (elem.name === state.day) {
+        return {
+          ...elem,
+          spots: elem.appointments
+            .map((appointment) => appointments[appointment])
+            .filter(({ interview }) => !interview).length
+        };
+      }
 
+      return elem;
+    });
+  }
+  //Function to cancel a booked interview
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
@@ -56,10 +72,7 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-    setState({
-      ...state,
-      appointments
-    });
+
     const interviewDay = findDay(state.day);
     const day = {
       ...state.days[interviewDay],
@@ -94,20 +107,6 @@ export default function useApplicationData() {
     });
   }, []);
 
-  function updateSpots(state, appointments) {
-    return state.days.map((elem) => {
-      if (elem.name === state.day) {
-        return {
-          ...elem,
-          spots: elem.appointments
-            .map((appointment) => appointments[appointment])
-            .filter(({ interview }) => !interview).length
-        };
-      }
-
-      return elem;
-    });
-  }
 
 
   return {

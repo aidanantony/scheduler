@@ -12,12 +12,13 @@ export default function Form(props) {
     setStudent("");
     setInterviewer(null);
   }
-
+  
   function cancel() {
     reset();
     props.onCancel();
   }
 
+  //Function to make sure fields and interviewer choice are correctly filled
   function validate() {
     if (interviewer === null) {
       setError("Please select an interviewer");
@@ -31,7 +32,7 @@ export default function Form(props) {
     setError("");
     props.onSave(student, interviewer);
   }
-
+  // The JSX for the form
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">

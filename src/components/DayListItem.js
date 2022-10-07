@@ -3,6 +3,8 @@ import "components/DayListItem.scss";
 import classNames from "classnames";
 
 export default function DayListItem(props) {
+
+  //Function to display messages depending on spots remaining
   const formatSpots = function(spots) {
     if (props.spots === 0) {
       return "no spots remaining";
