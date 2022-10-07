@@ -46,55 +46,58 @@ export default function Appointment(props) {
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
-      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SAVING && <Status message={'Saving'} />}
-      {mode === DELETING && <Status message={'Deleting'} />}
+
       {mode === CONFIRM && (
         <Confirm message={'Are you sure you want to delete?'}
-          onCancel={() => back()}
-          onConfirm={cancel}
+        onCancel={back}
+        onConfirm={cancel}
         />
-      )}
+        )}
 
 
       {mode === SHOW && (
         <Show
-          student={props.interview.student}
-          interviewer={props.interview.interviewer && props.interview.interviewer.name}
-          onDelete={() => transition(CONFIRM)}
-          onEdit={() => transition(EDIT)}
+        student={props.interview.student}
+        interviewer={props.interview.interviewer && props.interview.interviewer.name}
+        onDelete={() => transition(CONFIRM)}
+        onEdit={() => transition(EDIT)}
         />
-      )}
+        )}
+
       {mode === CREATE && (
         <Form
-          interviewers={props.interviewers}
-          onCancel={() => back()}
-          onSave={save}
+        interviewers={props.interviewers}
+        onCancel={back}
+        onSave={save}
         />
-      )}
+        )}
+
       {mode === EDIT && (
         <Form
-          onCancel={() => back()}
-          student={props.interview.student}
-          interviewer={props.interview.interviewer.id}
-          interviewers={props.interviewers}
-          onSave={(name, interviewer) => save(name, interviewer)}
+        onCancel={back}
+        student={props.interview.student}
+        interviewer={props.interview.interviewer.id}
+        interviewers={props.interviewers}
+        onSave={(name, interviewer) => save(name, interviewer)}
         />
-      )}
+        )}
 
       {mode === ERROR_SAVE && (
         <Error
-          message={'Error creating appointment'}
-          onClose={() => back()}
+        message={'Error creating appointment'}
+        onClose={back}
         />
-      )}
+        )}
 
       {mode === ERROR_DELETE && (
         <Error
-          message={'Error deleting appointment'}
-          onClose={() => back()}
+        message={'Error deleting appointment'}
+        onClose={back}
         />
-      )}
+        )}
+      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {mode === SAVING && <Status message={'Saving'} />}
+      {mode === DELETING && <Status message={'Deleting'} />}
     </article>
   );
 }
